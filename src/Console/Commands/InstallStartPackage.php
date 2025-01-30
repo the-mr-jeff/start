@@ -14,32 +14,16 @@ class InstallStartPackage extends Command
         $this->info('Starting installation of Start package...');
 
         // Publish views
-        $this->call('vendor:publish', [
-            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
-            '--tag' => 'views',
-            '--force' => true
-        ]);
+        $this->publishViews();
 
         // Publish JS
-        $this->call('vendor:publish', [
-            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
-            '--tag' => 'js',
-            '--force' => true
-        ]);
+        $this->publishJS();
 
         // Publish layouts
-        $this->call('vendor:publish', [
-            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
-            '--tag' => 'layouts',
-            '--force' => true
-        ]);
+        $this->publishLayouts();
 
         // Publish routes
-        $this->call('vendor:publish', [
-            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
-            '--tag' => 'routes',
-            '--force' => true
-        ]);
+        $this->publishRoutes();
 
         // Install npm dependencies (HTMX)
         $this->installHTMX();
@@ -47,9 +31,48 @@ class InstallStartPackage extends Command
         $this->info('Start package installed successfully!');
     }
 
+    protected function publishViews()
+    {
+        $this->info('Publishing views...');
+        $this->call('vendor:publish', [
+            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
+            '--tag' => 'views',
+            '--force' => true
+        ]);
+    }
+
+    protected function publishJS()
+    {
+        $this->info('Publishing JS...');
+        $this->call('vendor:publish', [
+            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
+            '--tag' => 'js',
+            '--force' => true
+        ]);
+    }
+
+    protected function publishLayouts()
+    {
+        $this->info('Publishing layouts...');
+        $this->call('vendor:publish', [
+            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
+            '--tag' => 'layouts',
+            '--force' => true
+        ]);
+    }
+
+    protected function publishRoutes()
+    {
+        $this->info('Publishing routes...');
+        $this->call('vendor:publish', [
+            '--provider' => 'TheMrJeff\Start\PermissionEditorServiceProvider',
+            '--tag' => 'routes',
+            '--force' => true
+        ]);
+    }
+
     protected function installHTMX()
     {
-        // Run npm install for HTMX
         $this->info('Installing HTMX...');
         $output = shell_exec('npm install htmx.org');
         $this->info('HTMX installation output: ' . $output);
