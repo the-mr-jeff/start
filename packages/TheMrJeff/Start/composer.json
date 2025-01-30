@@ -1,0 +1,25 @@
+{
+    "name": "the-mr-jeff/start",
+    "description": "Your package description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mr Jeff",
+            "email": "your@email.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "TheMrJeff\\Start\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TheMrJeff\\Start\\PermissionEditorServiceProvider"
+            ]
+        }
+    }
+}
